@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="urn:us:gov:treasury" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:us:gov:treasury" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.8">
+	<xsd:include schemaLocation="../core/Common_ComplexTypes.xsd"/>
+	<xsd:element name="AgencyLocationCodeRecords" type="Transmission_AgencyLocationCodeRecords_ComplexType">
+		<xsd:annotation>
+			<xsd:documentation>The container for a collection of Agency Location Code records.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="Transmission_AgencyLocationCodeRecords_ComplexType">
+		<xsd:complexContent>
+			<xsd:restriction base="Transmission_Baseline_ComplexType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="AgencyLocationCodeRecord" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:choice>
+				<xsd:attribute name="ID" type="Identifier_SimpleType" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>An identifier for the record.  For a receiving system, this value can be used to reconcile updates to an existing record and qualify new records.  For a sending system, this value can be used to reconcile acknowledgements for the submitted records.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="TransmissionTimestamp" type="TimeStamp_SimpleType" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>Indicates the date and time of a transmission.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="BusinessTransmissionCategory" type="BusinessTransmissionCategory_SimpleType" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>The business line that processed the transaction.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="InputSystem" type="StringLength_0to40_SimpleType" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>Identifies the sending trading partner.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="SequenceNumber" type="SequenceNumber_SimpleType" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>Provides a sequential order of items.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="IsEndOfDay" type="Boolean_SimpleType" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>Indicates if this transmission is the last transmission for the day.  </xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="TotalAmount" type="AmountLength_SimpleType" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>Indicates the total absolute dollar amount of items.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="TotalCount" type="Count_SimpleType" use="optional">
+					<xsd:annotation>
+						<xsd:documentation>Indicates the total number of items.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="RunningDailyCount" type="Count_SimpleType" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>A running total count for a given day. (A day is determined from the end of day indicator of the prior day to the current end of day.)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="RunningDailyAmount" type="AmountLength_SimpleType" use="prohibited">
+					<xsd:annotation>
+						<xsd:documentation>A cumulative absolute amount, including the items within a transmission, within a given day. (A day is determined from the end of day indicator of the prior day to the current end of day.)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="VersionIdentifier" type="StringLength_0to80_SimpleType" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Indicates an identifier assigned to a version for this transmission.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:restriction>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>
